@@ -11,7 +11,7 @@ public class PaidBillOperationRequest {
     Integer tep;
     Integer d;
     Long netWorth;
-    Long ValueYouGet;
+    BigDecimal ValueYouGet;
     Integer tcea;
     Long userId;
 
@@ -31,7 +31,7 @@ public class PaidBillOperationRequest {
 
     public Long getNetWorth() { return netWorth; }
 
-    public Long getValueYouGet() { return ValueYouGet; }
+    public BigDecimal getValueYouGet() { return ValueYouGet; }
 
     public Integer getTcea() { return tcea; }
 }

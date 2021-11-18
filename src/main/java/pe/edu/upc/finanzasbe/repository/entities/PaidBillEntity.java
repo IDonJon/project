@@ -39,8 +39,8 @@ public class PaidBillEntity {
     @Column(name = "netWorth", nullable = false)
     private Long netWorth;
 
-    @Column(name = "ValueYouGet", nullable = false)
-    private Long ValueYouGet;
+    @Column(name = "valueYouGet", nullable = false)
+    private BigDecimal ValueYouGet;
 
     @Column(name = "tcea", nullable = false)
     private Integer tcea;
@@ -82,9 +82,9 @@ public class PaidBillEntity {
 
     public void setNetWorth(Long netWorth) { this.netWorth = netWorth; }
 
-    public Long getValueYouGet() { return ValueYouGet; }
+    public BigDecimal getValueYouGet() { return ValueYouGet; }
 
-    public void setValueYouGet(Long ValueYouGet) { this.ValueYouGet = ValueYouGet; }
+    public void setValueYouGet(BigDecimal ValueYouGet) { this.ValueYouGet = ValueYouGet; }
 
     public Integer getTcea() { return tcea; }
 
