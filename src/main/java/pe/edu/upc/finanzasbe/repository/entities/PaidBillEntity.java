@@ -84,7 +84,7 @@ public class PaidBillEntity {
 
     public Long getValueYouGet() { return ValueYouGet; }
 
-    public void setValueYouGet(Long valueYouGet) { ValueYouGet = valueYouGet; }
+    public void setValueYouGet(Long valueYouGet) { this.ValueYouGet = valueYouGet; }
 
     public Integer getTcea() { return tcea; }
 
