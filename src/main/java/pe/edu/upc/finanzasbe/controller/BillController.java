@@ -57,9 +57,9 @@ public class BillController {
     }
 
     @PatchMapping("/{billdId}/{status}")
-    public BillEntity updateBillStatus(@PathVariable("billId") Long billId, @PathVariable String status, @PathVariable BillOperationRequest request){
-        BillEntity bill = new BillEntity();
-        bill = billService.findById(billId);
+    public BillEntity updateBillStatus(@PathVariable("billId") Long billId, @PathVariable String status){
+        BillEntity bill;
+        bill = billService.getById(billId);
         bill.setStatus(status);
         billService.update(billId, bill);
         return bill;
