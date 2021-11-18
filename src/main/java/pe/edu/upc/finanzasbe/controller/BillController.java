@@ -1,19 +1,11 @@
 package pe.edu.upc.finanzasbe.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.finanzasbe.controller.request.BillOperationRequest;
+import pe.edu.upc.finanzasbe.repository.BillRepository;
 import pe.edu.upc.finanzasbe.repository.entities.BillEntity;
 import pe.edu.upc.finanzasbe.repository.entities.UserEntity;
 import pe.edu.upc.finanzasbe.service.BillService;
@@ -28,12 +20,13 @@ import java.util.List;
 public class BillController {
 
     private final BillService billService;
-
+    private final BillRepository billRepository;
     private final UserService userService;
 
     @Autowired
-    public BillController(BillService billService, UserService userService) {
+    public BillController(BillService billService, BillRepository billRepository, UserService userService) {
         this.billService = billService;
+        this.billRepository = billRepository;
         this.userService = userService;
     }
 
@@ -61,6 +54,15 @@ public class BillController {
     public BillEntity update(@PathVariable("billId") Long billId, @RequestBody BillOperationRequest request) {
 
         return this.billService.update(billId, this.parseOperationRequest(request));
+    }
+
+    @PatchMapping("/{billdId}/{status}")
+    public BillEntity updateBillStatus(@PathVariable("billId") Long billId, @PathVariable String status, @PathVariable BillOperationRequest request){
+        BillEntity bill = new BillEntity();
+        bill = billService.findById(billId);
+        bill.setStatus(status);
+        billService.update(billId, bill);
+        return bill;
     }
 
     @DeleteMapping("/{id}")

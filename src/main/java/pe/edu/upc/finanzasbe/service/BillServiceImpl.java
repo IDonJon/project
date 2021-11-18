@@ -35,6 +35,11 @@ public class BillServiceImpl implements BillService {
     }
 
     @Override
+    public BillEntity findById(Long id) {
+        return this.billRepository.findById(id).orElse(null);
+    }
+
+    @Override
     public BillEntity update(Long id, BillEntity bill) {
         BillEntity oldBill = this.billRepository.findById(id).orElse(null);
 

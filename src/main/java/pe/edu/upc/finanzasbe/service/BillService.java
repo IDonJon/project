@@ -12,6 +12,8 @@ public interface BillService {
 
     BillEntity getById(Long id);
 
+    BillEntity findById(Long id);
+
     BillEntity update(Long id, BillEntity bill);
 
     BillEntity create(BillEntity bill);

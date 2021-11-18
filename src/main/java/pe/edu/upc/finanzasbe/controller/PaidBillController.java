@@ -52,20 +52,6 @@ public class PaidBillController {
         return this.paidBillService.update(paidBillId, this.parseOperationRequest(request));
     }
 
-    @PatchMapping("/{paidBillId}")
-    public PaidBillEntity patch(@PathVariable("paidBillId") Long paidBillId, @RequestBody PaidBillOperationRequest request, Map<Object, Object> fields) {
-        Optional<PaidBillEntity> paidbill = Optional.ofNullable(paidBillService.findById(paidBillId));
-        if (paidbill.isPresent()) {
-            fields.forEach((key, value) -> {
-                Field field = ReflectionUtils.findField(PaidBillEntity.class, (String) key);
-                field.setAccessible(true);
-                ReflectionUtils.setField(field, paidbill.get(), value);
-            });
-            return this.paidBillService.update(paidBillId, this.parseOperationRequest(request));
-        }
-        return null;
-    }
-
     @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") Long paidBillId) { this.paidBillService.delete(paidBillId); }
 
