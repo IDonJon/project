@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import pe.edu.upc.finanzasbe.repository.entities.UserEntity;
 import pe.edu.upc.finanzasbe.service.BillService;
+import pe.edu.upc.finanzasbe.service.PaidBillService;
 import pe.edu.upc.finanzasbe.service.UserService;
 
 import java.util.List;
@@ -28,12 +29,13 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
-
+    private final PaidBillService paidBillService;
     private final BillService billService;
 
     @Autowired
-    public UserController(UserService userService, BillService billService) {
+    public UserController(UserService userService, PaidBillService paidBillService, BillService billService) {
         this.userService = userService;
+        this.paidBillService = paidBillService;
         this.billService = billService;
     }
 
@@ -66,6 +68,7 @@ public class UserController {
     @ResponseStatus(HttpStatus.OK)
     public void delete(@PathVariable("id") Long userId) {
         this.billService.deleteAllByUserId(userId);
+        this.paidBillService.deleteAllByUserId(userId);
         this.userService.deleteUser(userId);
     }
 

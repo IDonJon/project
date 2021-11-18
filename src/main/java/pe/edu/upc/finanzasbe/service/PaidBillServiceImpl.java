@@ -26,7 +26,7 @@ public class PaidBillServiceImpl implements PaidBillService{
 
     @Override
     public List<PaidBillEntity> getAllByUser(Long userId) {
-        return this.paidBillRepository.getAllByUserId(userId);
+        return this.paidBillRepository.getAllByUserUserId(userId);
     }
 
     @Override
@@ -63,7 +63,7 @@ public class PaidBillServiceImpl implements PaidBillService{
 
     @Override
     public void deleteAllByUserId(Long userId) {
-        List<PaidBillEntity> userPaidBills = this.paidBillRepository.getAllByUserId(userId);
+        List<PaidBillEntity> userPaidBills = this.paidBillRepository.getAllByUserUserId(userId);
         paidBillRepository.deleteAll(userPaidBills);
     }
 }

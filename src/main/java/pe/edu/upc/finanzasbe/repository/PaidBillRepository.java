@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface PaidBillRepository extends JpaRepository<PaidBillEntity, Long> {
 
-    List<PaidBillEntity> getAllByUserId(Long userId);
+    List<PaidBillEntity> getAllByUserUserId(Long userId);
 }
