@@ -1,6 +1,7 @@
 package pe.edu.upc.finanzasbe.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.ReflectionUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.finanzasbe.controller.request.PaidBillOperationRequest;
@@ -9,6 +10,7 @@ import pe.edu.upc.finanzasbe.repository.entities.UserEntity;
 import pe.edu.upc.finanzasbe.service.PaidBillService;
 import pe.edu.upc.finanzasbe.service.UserService;
 
+import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -50,11 +52,19 @@ public class PaidBillController {
         return this.paidBillService.update(paidBillId, this.parseOperationRequest(request));
     }
 
-    /*@PatchMapping("/{paidBillId}")
-    public PaidBillEntity patch(@PathVariable("paidBillId") Long paidBillId, @RequestBody Map<Object, Object> fields) {
-        Optional<PaidBillEntity> paidBill = paidBillService.findById(id);
-
-    }*/
+    @PatchMapping("/{paidBillId}")
+    public PaidBillEntity patch(@PathVariable("paidBillId") Long paidBillId, @RequestBody PaidBillOperationRequest request, Map<Object, Object> fields) {
+        Optional<PaidBillEntity> paidbill = Optional.ofNullable(paidBillService.findById(paidBillId));
+        if (paidbill.isPresent()) {
+            fields.forEach((key, value) -> {
+                Field field = ReflectionUtils.findField(PaidBillEntity.class, (String) key);
+                field.setAccessible(true);
+                ReflectionUtils.setField(field, paidbill.get(), value);
+            });
+            return this.paidBillService.update(paidBillId, this.parseOperationRequest(request));
+        }
+        return null;
+    }
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") Long paidBillId) { this.paidBillService.delete(paidBillId); }

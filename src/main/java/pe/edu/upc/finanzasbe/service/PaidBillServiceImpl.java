@@ -35,6 +35,11 @@ public class PaidBillServiceImpl implements PaidBillService{
     }
 
     @Override
+    public PaidBillEntity findById(Long id) {
+        return this.paidBillRepository.findById(id).orElse(null);
+    }
+
+    @Override
     public PaidBillEntity update(Long id, PaidBillEntity paidBill) {
         PaidBillEntity existingPaidBill = this.paidBillRepository.findById(id).orElse(null);
 

@@ -31,19 +31,19 @@ public class PaidBillEntity {
     private Integer days;
 
     @Column(name = "tep", nullable = false)
-    private Integer tep;
+    private Float tep;
 
     @Column(name = "d", nullable = false)
-    private Integer d;
+    private Float d;
 
     @Column(name = "netWorth", nullable = false)
-    private Long netWorth;
+    private Float netWorth;
 
     @Column(name = "valueYouGet", nullable = false, precision = 19, scale = 2)
     private BigDecimal valueYouGet;
 
     @Column(name = "tcea", nullable = false)
-    private Integer tcea;
+    private Float tcea;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "user_user_id", nullable = false)
@@ -70,25 +70,25 @@ public class PaidBillEntity {
 
     public void setDays(Integer days) { this.days = days; }
 
-    public Integer getTep() { return tep; }
+    public Float getTep() { return tep; }
 
-    public void setTep(Integer tep) { this.tep = tep; }
+    public void setTep(Float tep) { this.tep = tep; }
 
-    public Integer getD() { return d; }
+    public Float getD() { return d; }
 
-    public void setD(Integer d) { this.d = d; }
+    public void setD(Float d) { this.d = d; }
 
-    public Long getNetWorth() { return netWorth; }
+    public Float getNetWorth() { return netWorth; }
 
-    public void setNetWorth(Long netWorth) { this.netWorth = netWorth; }
+    public void setNetWorth(Float netWorth) { this.netWorth = netWorth; }
 
     public BigDecimal getValueYouGet() { return valueYouGet; }
 
     public void setValueYouGet(BigDecimal valueYouGet) { this.valueYouGet = valueYouGet; }
 
-    public Integer getTcea() { return tcea; }
+    public Float getTcea() { return tcea; }
 
-    public void setTcea(Integer tcea) { this.tcea = tcea; }
+    public void setTcea(Float tcea) { this.tcea = tcea; }
 
     public UserEntity getUser() { return user; }
 

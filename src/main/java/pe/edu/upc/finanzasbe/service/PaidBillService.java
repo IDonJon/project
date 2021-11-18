@@ -12,6 +12,8 @@ public interface PaidBillService {
 
     PaidBillEntity getById(Long id);
 
+    PaidBillEntity findById(Long id);
+
     PaidBillEntity update(Long id, PaidBillEntity paidBill);
 
     PaidBillEntity create(PaidBillEntity paidBill);

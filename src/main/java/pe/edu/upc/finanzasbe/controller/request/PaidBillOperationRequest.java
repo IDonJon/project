@@ -8,11 +8,11 @@ public class PaidBillOperationRequest {
     String ruc;
     BigDecimal value;
     Integer days;
-    Integer tep;
-    Integer d;
-    Long netWorth;
+    Float tep;
+    Float d;
+    Float netWorth;
     BigDecimal valueYouGet;
-    Integer tcea;
+    Float tcea;
     Long userId;
 
     public Long getUserId() { return userId; }
@@ -25,13 +25,13 @@ public class PaidBillOperationRequest {
 
     public Integer getDays() { return days; }
 
-    public Integer getTep() { return tep; }
+    public Float getTep() { return tep; }
 
-    public Integer getD() { return d; }
+    public Float getD() { return d; }
 
-    public Long getNetWorth() { return netWorth; }
+    public Float getNetWorth() { return netWorth; }
 
     public BigDecimal getValueYouGet() { return valueYouGet; }
 
-    public Integer getTcea() { return tcea; }
+    public Float getTcea() { return tcea; }
 }
