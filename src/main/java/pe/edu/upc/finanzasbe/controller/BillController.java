@@ -56,15 +56,6 @@ public class BillController {
         return this.billService.update(billId, this.parseOperationRequest(request));
     }
 
-    @PatchMapping("/{billdId}/{status}")
-    public BillEntity updateBillStatus(@PathVariable("billId") Long billId, @PathVariable String status){
-        BillEntity bill;
-        bill = billService.getById(billId);
-        bill.setStatus(status);
-        billService.update(billId, bill);
-        return bill;
-    }
-
     @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") Long billId) {
         this.billService.delete(billId);
