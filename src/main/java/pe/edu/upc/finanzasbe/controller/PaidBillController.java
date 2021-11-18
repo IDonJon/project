@@ -2,7 +2,17 @@ package pe.edu.upc.finanzasbe.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import pe.edu.upc.finanzasbe.controller.request.BillOperationRequest;
 import pe.edu.upc.finanzasbe.controller.request.PaidBillOperationRequest;
 import pe.edu.upc.finanzasbe.repository.entities.BillEntity;
@@ -42,6 +52,12 @@ public class PaidBillController {
     @PostMapping
     public PaidBillEntity create(@RequestBody PaidBillOperationRequest request) {
         return this.paidBillService.create(this.parseOperationRequest(request));
+    }
+
+    @PutMapping("/{paidBillId}")
+    public PaidBillEntity update(@PathVariable("paidBillId") Long paidBillId, @RequestBody PaidBillOperationRequest request) {
+
+        return this.paidBillService.update(paidBillId, this.parseOperationRequest(request));
     }
 
     @DeleteMapping("/{id}")

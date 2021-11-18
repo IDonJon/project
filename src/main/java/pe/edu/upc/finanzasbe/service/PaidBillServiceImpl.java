@@ -3,7 +3,6 @@ package pe.edu.upc.finanzasbe.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.finanzasbe.repository.PaidBillRepository;
-import pe.edu.upc.finanzasbe.repository.entities.BillEntity;
 import pe.edu.upc.finanzasbe.repository.entities.PaidBillEntity;
 
 import javax.persistence.EntityNotFoundException;
